@@ -17,9 +17,9 @@ export type TypeLoginUserContext = {
 }
 
 // コンテキストを宣言
-export const LoginUserContext: React.Context<TypeLoginUserContext | undefined> = createContext<
-  TypeLoginUserContext | undefined
->(undefined)
+export const LoginUserContext: React.Context<TypeLoginUserContext | null> = createContext<TypeLoginUserContext | null>(
+  null
+)
 
 // Propsをchildrenとして受け取る
 export const LoginUserProvider = (props: ILoginUserContextProps) => {

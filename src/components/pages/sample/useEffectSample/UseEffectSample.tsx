@@ -1,23 +1,23 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect, memo, useRef } from 'react'
 
 export const UseEffectSample: React.FC = memo(() => {
-  const [isChecked, setIsChecked] = useState<boolean>(false)
-  const [count, setCount] = useState<number>(0)
+  const [isChecked, setIsChecked]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false)
+  const [count, setCount]: [number, React.Dispatch<React.SetStateAction<number>>] = useState<number>(0)
   console.log('再レンダリング')
-  let intervalId: NodeJS.Timeout | string | number | undefined | null = null
+  const intervalId: React.MutableRefObject<NodeJS.Timeout | null> = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     console.log('再レンダリング useEffect')
 
-    if (isChecked && !intervalId) {
-      intervalId = setInterval(() => {
-        setCount((count) => count + 1)
+    if (isChecked && !intervalId.current) {
+      intervalId.current = setInterval(() => {
+        setCount((count: number) => count + 1)
       }, 1000)
-    } else if (!isChecked && intervalId) {
-      clearInterval(intervalId)
-      intervalId = null
+    } else if (!isChecked && intervalId.current) {
+      clearInterval(intervalId.current)
+      intervalId.current = null
     }
-  }, [isChecked])
+  }, [intervalId, isChecked])
 
   return (
     <>

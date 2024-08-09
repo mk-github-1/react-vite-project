@@ -15,14 +15,14 @@ export const PropsSample: React.FC = memo(() => {
 // 教育説明用のため同じファイル内に子コンポーネントを置いてます。
 
 // 子コンポーネントのPropsの型定義
-type PropTest = {
+type Props = {
   message: string
 }
 
 // 子コンポーネント
-const Children: React.FC<PropTest> = memo((props: PropTest) => {
+const Children: React.FC<Props> = memo((props: Props) => {
   // propsからデータを受け取る(分割代入とオブジェクトの省略記法を利用)
-  const { message } = props
+  const { message }: { message: string } = props
 
   return (
     <>

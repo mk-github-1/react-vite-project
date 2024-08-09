@@ -1,15 +1,12 @@
 import React, { memo, useContext, useState } from 'react'
-import {
-  LoginUser,
-  LoginUserContext,
-  TypeLoginUserContext
-} from '@/common/providers/LoginUserProvider'
+import { LoginUser, LoginUserContext, TypeLoginUserContext } from '@/common/providers/LoginUserProvider'
 import { Button, Input } from '@mantine/core'
 
 export const UseContextSample: React.FC = memo(() => {
   // 使用方法、useContext<型>(参照したいコンテキストを指定)
-  const loginUserContext: TypeLoginUserContext | undefined = useContext(LoginUserContext)
-  const [loginUser, setInputValue] = useState<LoginUser>()
+  const loginUserContext: TypeLoginUserContext | null = useContext<TypeLoginUserContext | null>(LoginUserContext)
+  const [loginUser, setInputValue]: [LoginUser | null, React.Dispatch<React.SetStateAction<LoginUser | null>>] =
+    useState<LoginUser | null>(null)
 
   console.log('再レンダリングされます')
 
@@ -37,7 +34,7 @@ export const UseContextSample: React.FC = memo(() => {
       <Button
         onClick={() => {
           loginUserContext?.setLoginUser({
-            loginUserName: loginUser !== undefined ? loginUser.loginUserName : ''
+            loginUserName: loginUser && loginUser !== undefined ? loginUser.loginUserName : ''
           })
         }}
         style={{ width: '200px' }}

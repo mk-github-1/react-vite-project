@@ -4,7 +4,7 @@ export const UseStateSample: React.FC = memo(() => {
   // 左辺：1つ目にState変数を指定、2つめにStateを更新するための関数を指定
   // 右辺：useState<>の<>にはデータ型を指定します、0は初期値です
   // 右辺を左辺に配列の分割代入をしています。
-  const [count, setCount] = useState<number>(0)
+  const [count, setCount]: [number, React.Dispatch<React.SetStateAction<number>>] = useState<number>(0)
   console.log('再レンダリング')
   const count2: number = 1
 

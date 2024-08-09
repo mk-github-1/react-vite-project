@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 
 export const MemoSample: React.FC = memo(() => {
-  const [count, setCount] = React.useState<number>(0)
+  const [count, setCount]: [number, React.Dispatch<React.SetStateAction<number>>] = React.useState<number>(0)
 
   console.log('Appはレンダリングされる')
 

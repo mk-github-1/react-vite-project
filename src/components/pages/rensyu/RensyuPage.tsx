@@ -22,15 +22,14 @@ export const RensyuPage: React.FC = memo(() => {
 
   // Table
   const [selectedRow, setSelectedRow]: [
-    Row<PersonColumn> | undefined,
-    React.Dispatch<React.SetStateAction<Row<PersonColumn> | undefined>>
-  ] = useState<Row<PersonColumn>>()
+    Row<PersonColumn> | null,
+    React.Dispatch<React.SetStateAction<Row<PersonColumn> | null>>
+  ] = useState<Row<PersonColumn> | null>(null)
 
   // Modal
-  const [modalType, setModalType]: [number | undefined, React.Dispatch<React.SetStateAction<number | undefined>>] =
-    useState<number>()
-  const [formData, setFormData]: [Person | undefined, React.Dispatch<React.SetStateAction<Person | undefined>>] =
-    useState<Person>()
+  const [modalType, setModalType]: [number, React.Dispatch<React.SetStateAction<number>>] = useState<number>(0)
+  const [formData, setFormData]: [Person | null, React.Dispatch<React.SetStateAction<Person | null>>] =
+    useState<Person | null>(null)
 
   const handleRowSelect: (event: Row<PersonColumn>) => void = useCallback((event: Row<PersonColumn>): void => {
     setSelectedRow(event)
@@ -57,17 +56,17 @@ export const RensyuPage: React.FC = memo(() => {
     } else if (mode === 2) {
       // 独自の処理 (例: API呼び出しなど)
       const formData: Person = {
-        personCode: selectedRow !== undefined ? selectedRow.getValue('personCode') : '',
-        personName: selectedRow !== undefined ? selectedRow.getValue('personName') : '',
-        age: selectedRow !== undefined ? selectedRow.getValue('age') : 0,
-        hobby: selectedRow !== undefined ? selectedRow.getValue('hobby') : '',
-        posted: selectedRow !== undefined ? selectedRow.getValue('posted') : null,
-        remarks: selectedRow !== undefined ? selectedRow.getValue('remarks') : null,
-        isDeleted: selectedRow !== undefined ? selectedRow.getValue('isDeleted') : false,
-        createdAt: selectedRow !== undefined ? selectedRow.getValue('createdAt') : null,
-        updatedAt: selectedRow !== undefined ? selectedRow.getValue('updatedAt') : null,
-        createdBy: selectedRow !== undefined ? selectedRow.getValue('createdBy') : null,
-        updatedBy: selectedRow !== undefined ? selectedRow.getValue('updatedBy') : null
+        personCode: selectedRow ? selectedRow.getValue('personCode') : '',
+        personName: selectedRow ? selectedRow.getValue('personName') : '',
+        age: selectedRow ? selectedRow.getValue('age') : 0,
+        hobby: selectedRow ? selectedRow.getValue('hobby') : '',
+        posted: selectedRow ? selectedRow.getValue('posted') : null,
+        remarks: selectedRow ? selectedRow.getValue('remarks') : null,
+        isDeleted: selectedRow ? selectedRow.getValue('isDeleted') : false,
+        createdAt: selectedRow ? selectedRow.getValue('createdAt') : null,
+        updatedAt: selectedRow ? selectedRow.getValue('updatedAt') : null,
+        createdBy: selectedRow ? selectedRow.getValue('createdBy') : null,
+        updatedBy: selectedRow ? selectedRow.getValue('updatedBy') : null
       }
 
       setFormData(formData)

@@ -12,8 +12,8 @@ export interface IRensyuProps {
   deletePerson: (person: Person) => Promise<void>
   handleRowSelect: (row: Row<PersonColumn>) => void
   handleButton: (mode: number) => void
-  modalType?: number
-  formData?: Person
+  modalType: number
+  formData: Person | null
 }
 
 export interface IRensyuTableProps {
@@ -31,6 +31,6 @@ export interface IRensyuModalFormProps {
   postPerson: (person: Person) => Promise<void>
   patchPerson: (person: Person) => Promise<void>
   deletePerson: (person: Person) => Promise<void>
-  modalType?: number
-  formData?: Person
+  modalType: number
+  formData: Person | null
 }

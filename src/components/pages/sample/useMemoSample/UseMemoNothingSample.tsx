@@ -1,12 +1,12 @@
 import React, { useState, memo } from 'react'
 
 export const UseMemoNothingSample: React.FC = memo(() => {
-  const [count1, setCount1] = useState<number>(0)
-  const [count2, setCount2] = useState<number>(0)
+  const [count1, setCount1]: [number, React.Dispatch<React.SetStateAction<number>>] = useState<number>(0)
+  const [count2, setCount2]: [number, React.Dispatch<React.SetStateAction<number>>] = useState<number>(0)
 
   // 変数(関数の結果)
   const square = (): number => {
-    let i = 0
+    let i: number = 0
     while (i < 300000000) i++
     return count1 * count1
   }
